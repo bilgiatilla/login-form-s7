@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../index.css';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../index.css";
 
 const initialForm = {
-  email: '',
-  password: '',
+  email: "",
+  password: "",
   terms: false,
 };
 
@@ -17,27 +17,27 @@ export default function Login() {
   const navigate = useNavigate();
 
   const validate = (name, value) => {
-    if (name === 'email')
-      return emailRegex.test(value) ? '' : 'Geçerli bir email giriniz.';
-    if (name === 'password')
+    if (name === "email")
+      return emailRegex.test(value) ? "" : "Geçerli bir email giriniz.";
+    if (name === "password")
       return passwordRegex.test(value)
-        ? ''
-        : 'Şifre en az 8 karakter, büyük/küçük harf, rakam ve sembol içermelidir.';
-    return '';
+        ? ""
+        : "Şifre en az 8 karakter, büyük/küçük harf, rakam ve sembol içermelidir.";
+    return "";
   };
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
-    const newValue = type === 'checkbox' ? checked : value;
+    const newValue = type === "checkbox" ? checked : value;
     setForm({ ...form, [name]: newValue });
-    if (type !== 'checkbox') {
+    if (type !== "checkbox") {
       setErrors({ ...errors, [name]: validate(name, newValue) });
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    navigate('/success');
+    navigate("/success");
   };
 
   const isValid =
